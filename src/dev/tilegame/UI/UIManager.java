@@ -1,0 +1,55 @@
+package dev.tilegame.UI;
+
+import dev.tilegame.Handler.Handler;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+/**
+ * Created by Minnie on 2016-07-13.
+ */
+public class UIManager {
+
+    private Handler handler;
+    private ArrayList<UIObject> objects;
+
+    public UIManager(Handler handler){
+        this.handler = handler;
+        objects = new ArrayList<UIObject>();
+    }
+
+    public void tick(){
+        for (UIObject o : objects){
+            o.tick();
+        }
+    }
+
+    public void render(Graphics g){
+        for(UIObject o : objects){
+            o.render(g);
+        }
+    }
+
+
+
+    public void onMouseMove(MouseEvent e){
+        for(UIObject o : objects){
+            o.onMouseMove(e);
+        }
+    }
+
+    public void onMouseRelease(MouseEvent e){
+        for(UIObject o : objects){
+            o.onMouseRelease(e);
+        }
+    }
+
+    public void addObjects(UIObject o){
+        objects.add(o);
+    }
+
+    public void removeObjects(UIObject o){
+        objects.remove(o);
+    }
+}
